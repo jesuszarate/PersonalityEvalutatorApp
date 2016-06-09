@@ -29,7 +29,7 @@ public class MainActivity extends ActionBarActivity
                 String userName = "@" + usernameInput.getText().toString();
                 Toast.makeText(MainActivity.this, userName, Toast.LENGTH_SHORT).show();
 
-                Intent personalityIntent = new Intent(MainActivity.this, PersonalityRating.class);
+                Intent personalityIntent = new Intent(MainActivity.this, PersonalityRatingActivity.class);
                 startActivity(personalityIntent);
             }
         });
