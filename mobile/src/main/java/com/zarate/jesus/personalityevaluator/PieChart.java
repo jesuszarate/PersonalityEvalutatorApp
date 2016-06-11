@@ -21,14 +21,8 @@ public class PieChart extends View {
     float _radius;
     int _color = Color.RED;
 
-    //For pie chart
     SliceOfPie[] slices;
     float currentAngle = 0;
-
-    //For header
-    float headerPadding = 10;
-    float currentHeaderPosition = 300;
-    float lengthOfheaderSquares = 50;
 
 //    public interface OnSplotchTouchListener{
 //        public void onSplotchTouched(PieChart v);
@@ -37,8 +31,10 @@ public class PieChart extends View {
 
     public PieChart(Context context, SliceOfPie[] slices) {
         super(context);
-        setMinimumHeight(1000);
-        setMinimumWidth(1000);
+        this.setBackgroundColor(Color.BLACK);
+
+        setMinimumHeight(100);
+        setMinimumWidth(100);
 
         this.slices = slices;
         // Colors: OPACITY/RED/GREEN/BLUE
@@ -107,9 +103,6 @@ public class PieChart extends View {
         paint.setColor(_color);
         Path path = new Path();
 
-        //...Instead of drawing path fill an arc which would be a slice of pie would
-        //   iterate through all of the slices (array of slices) and go from angle to angle.
-
         _contentRect = new RectF();
         _contentRect.left = getPaddingLeft();
         _contentRect.top = getPaddingTop();
@@ -119,10 +112,18 @@ public class PieChart extends View {
         for(int i = 0; i < slices.length; i++)
         {
             paint.setColor(slices[i].color);
-            canvas.drawRect(headerPadding, currentHeaderPosition, lengthOfheaderSquares, currentHeaderPosition+50, paint);
+            canvas.drawArc(_contentRect, currentAngle, (float) slices[i].angle, true, paint);
 
-            currentHeaderPosition += lengthOfheaderSquares + headerPadding;
+            currentAngle += slices[i].angle;
         }
+
+//        for(int i = 0; i < slices.length; i++)
+//        {
+//            paint.setColor(slices[i].color);
+//            canvas.drawRect(headerPadding, currentHeaderPosition, lengthOfHeaderSquares, currentHeaderPosition+50, paint);
+//
+//            currentHeaderPosition += lengthOfHeaderSquares + headerPadding;
+//        }
 
 
 //
@@ -157,15 +158,6 @@ public class PieChart extends View {
 //            }
 //
 //        }
-
-
-        for(int i = 0; i < slices.length; i++)
-        {
-            paint.setColor(slices[i].color);
-            canvas.drawArc(_contentRect, currentAngle, (float) slices[i].angle, true, paint);
-
-            currentAngle += slices[i].angle;
-        }
 
 
         //canvas.drawPath(path, paint);

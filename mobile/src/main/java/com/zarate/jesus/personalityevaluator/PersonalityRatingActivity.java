@@ -21,23 +21,25 @@ public class PersonalityRatingActivity extends ActionBarActivity
     {
         super.onCreate(savedInstanceState);
 
-        LinearLayout rootLayout = new LinearLayout(this);
-        rootLayout.setOrientation(LinearLayout.VERTICAL);
-
-        //PieHeader header = new PieHeader(this, slices);
-
+        //Change this so that is gets the values from algorithm
         PersonalityRating person = new PersonalityRating(-0.031, -0.039, 0.055, 0.043, 0.024, 0.0, 0.028, 0.093);
         SliceOfPie[] slices = person.getSlices();
 
-        PieChart analysisButton = new PieChart(this, slices);
-        //analysisButton.setColor(Color.RED);
+        //*** Pie chart Layout ***\\
+        LinearLayout rootLayout = new LinearLayout(this);
+        rootLayout.setOrientation(LinearLayout.VERTICAL);
+        PieChart pieChart = new PieChart(this, slices);
 
-        rootLayout.addView(analysisButton, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
+       // LinearLayout headerLayout = new LinearLayout(this);
+       // headerLayout.setOrientation(LinearLayout.VERTICAL);
+        PieHeader header = new PieHeader(this, slices);
+
+        rootLayout.addView(pieChart, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                0, 60));
+        rootLayout.addView(header, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                0, 40));
 
         setContentView(rootLayout);
-
-
     }
 
 

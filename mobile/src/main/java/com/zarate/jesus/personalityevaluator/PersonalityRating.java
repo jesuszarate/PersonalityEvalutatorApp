@@ -52,7 +52,7 @@ public class PersonalityRating
         this.opAngle = calculateAngle(opPercentage);
 
         slices = new SliceOfPie[]{new SliceOfPie("Psychopathic", psAngle, Color.RED),
-                new SliceOfPie("Machiavellant", maAngle, Color.BLUE),
+                new SliceOfPie("Machiallevalant", maAngle, Color.BLUE),
                 new SliceOfPie("Agreeable", agAngle, Color.GREEN),
                 new SliceOfPie("Narcissistic", naAngle, Color.GRAY),
                 new SliceOfPie("Neuroticist", neAngle, Color.MAGENTA),
